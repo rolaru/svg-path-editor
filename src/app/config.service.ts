@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 
 function save() {
-  return function(target: Object, propertyKey: string) { 
+  return function(target: Object, propertyKey: string) {
     const localStorageKey = `SaveDecorator.${target.constructor.name}.${propertyKey}`;
     const storedValue = localStorage.getItem(localStorageKey);
     let value: any = JSON.parse(storedValue ?? 'null');
@@ -23,7 +23,7 @@ function save() {
     Object.defineProperty(target, propertyKey, {
       get: () => value,
       set: setter
-    }); 
+    });
   }
 }
 
@@ -33,14 +33,14 @@ function save() {
   providedIn: 'root'
 })
 export class ConfigService {
-  @save() viewPortX = 0;
-  @save() viewPortY = 0;
-  @save() viewPortWidth = 30;
-  @save() viewPortHeight = 30;
+  @save() viewPortX = -5;
+  @save() viewPortY = -5;
+  @save() viewPortWidth = 100;
+  @save() viewPortHeight = 100;
   @save() viewPortLocked = false;
-  @save() filled = true;
+  @save() filled = false;
   @save() preview = false;
-  @save() showTicks = false;
+  @save() showTicks = true;
   @save() minifyOutput = false;
   @save() snapToGrid = true;
   @save() tickInterval = 5;
@@ -52,9 +52,9 @@ export class ConfigService {
   providedIn: 'root'
 })
 export class ExportConfigService {
-  @save() fill = true;
+  @save() fill = false;
   @save() fillColor = '#000000';
-  @save() stroke = false;
-  @save() strokeColor =  '#FF0000';
-  @save() strokeWidth = 0.1;
+  @save() stroke = true;
+  @save() strokeColor =  '#E2E2E2';
+  @save() strokeWidth = 8;
 }
